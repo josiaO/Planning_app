@@ -1,0 +1,6 @@
+{
+  "appId": "com.example.vision",
+  "appName": "Vision",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>OAuth Callback</title>
+</head>
+<body>
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const hash = new URLSearchParams(window.location.hash.substring(1));
+      
+      // Check for code (PKCE flow) or access_token (implicit flow)
+      let code = params.get('code');
+      let accessToken = hash.get('access_token');
+      
+      // provider detection: use state if set, otherwise try to infer from issuer
+      let provider = 'onedrive';
+      if (location.href.includes('accounts.google.com')) provider = 'gdrive';
+      
+      // postMessage to opener
+      if (window.opener) {
+        if (code) {
+          // PKCE flow - send code
+          window.opener.postMessage({ type: 'oauth_callback', provider, code }, location.origin);
+        } else if (accessToken) {
+          // Implicit flow - send token with prefix
+          window.opener.postMessage({ type: 'oauth_callback', provider, code: `token:${accessToken}` }, location.origin);
+        } else {
+          // Error case
+          window.opener.postMessage({ type: 'oauth_callback', provider, code: null, error: 'No code or token received' }, location.origin);
+        }
+        window.close();
+      } else {
+        document.body.innerText = 'Please close this window and return to the app.';
+      }
+    })();
+  </script>
+</body>
+</html>

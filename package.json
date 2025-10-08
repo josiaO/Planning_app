@@ -1,0 +1,59 @@
+{
+  "name": "vision-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "icons:generate": "node ./scripts/generate-icons.mjs",
+    "generate-splash": "node ./scripts/generate-splash.mjs",
+    "clean-icon": "node ./scripts/clean-icon.mjs",
+    "cap:init": "npx @capacitor/cli@latest init Vision com.example.vision --web-dir=dist",
+    "cap:add-android": "npx cap add android",
+    "cap:copy": "npx cap copy",
+    "cap:open-android": "npx cap open android",
+    "cap:resources": "node ./scripts/copy-resources.mjs",
+    "cap:build-open": "npm run build && npm run icons:generate && npm run generate-splash && npm run cap:copy && npm run cap:open-android",
+    "dev:proxy": "node ./server/gemini-proxy.js",
+    "dev:agent": "uvicorn server.agent_api:app --reload --port 8788",
+    "test": "vitest",
+    "test:playwright": "playwright test"
+  },
+  "playwright": {
+    "testDir": "tests"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.4",
+    "dexie": "^4.0.0",
+    "jszip": "^3.10.1",
+    "lucide-react": "^0.344.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-pdf": "^8.0.0",
+    "pdfjs-dist": "^3.10.1",
+    "uuid": "^9.0.0",
+    "vite": "^5.4.20"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "vitest": "^0.34.4",
+    "playwright": "^1.43.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "autoprefixer": "^10.4.21",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.2",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.9.3",
+    "vite-plugin-pwa": "^1.0.3",
+    "tesseract.js": "^2.1.5"
+  },
+  "vitest": {
+    "globals": true,
+    "environment": "jsdom"
+  }
+}
