@@ -2,7 +2,7 @@ import os
 import sys
 import traceback
 
-API_KEY = os.environ.get('GENAI_KEY') or 'AIzaSyDvxV-0SjIqiPXufhqKkGc1aCBYWYssISo'
+API_KEY = os.environ.get('GENAI_KEY') 
 MODEL = os.environ.get('GENAI_MODEL') or 'gemini-2.5-flash'
 
 print('Using API key:', '***REDACTED***' if API_KEY else '<none>')
