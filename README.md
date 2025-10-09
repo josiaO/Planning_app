@@ -9,7 +9,7 @@
 
 ---
 
-## What I inspected (quick reference)
+## quick reference
 
 - Frontend entry & wiring: `src/main.tsx`, `src/App.tsx`
 - Contexts and domain: `src/contexts/AuthContext.tsx`, `src/contexts/PlansContext.tsx`
