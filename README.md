@@ -235,14 +235,3 @@ Notes:
 - Server (LLM proxy): `server/agent_api.py`
 - Dev proxy for Gemini: `server/gemini-proxy.js`
 
----
-
-## Recommended next steps (pick one)
-
-1. Persist this doc file in the repository (done).
-2. Run a smoke test: I can start the Python server and the Vite dev server and report the logs.
-3. Improve WiFi sync: implement a simple Node HTTP server for LAN file exchange and wire it into the Sync UI.
-4. Security hardening: don't send client API keys to server — instead store keys server-side or use OAuth + server token.
----
-
-End of developer README.
